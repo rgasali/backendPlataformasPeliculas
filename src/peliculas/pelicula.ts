@@ -35,7 +35,7 @@ export class Pelicula{
     setId(nuevoId: string): void {
         this.id = nuevoId;
     }
-     */
+     
     setTitulo(nuevoTitulo: string): void {
         this.titulo = nuevoTitulo;
     }
@@ -57,6 +57,6 @@ export class Pelicula{
     setFecha(nuevoFecha: number): void {
         this.fecha = nuevoFecha;
     }
-
+*/
 
 }

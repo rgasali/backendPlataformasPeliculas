@@ -9,7 +9,7 @@ import { PeliculaDto } from "./pelicula.dto";
 export class PeliculasService{
 
     private peliculas:Pelicula[]=[
-     /* {
+      {
       "id":uuid(),
       "titulo":"Posesión infernal: El despertar ",
       "actores":["Lily Sullivan","Alyssa Sutherland","Morgan Davies","Gabrielle Echols","Nell Fisher"],
@@ -98,7 +98,7 @@ export class PeliculasService{
       "imagen":"https://www.themoviedb.org/t/p/w600_and_h900_bestv2/90QFOG5zSN4cbrIVs4DL4ePAuA5.jpg",
       "duracion":155,
       "fecha":2000
-    } */ ];
+    }  ];
   
 
     
@@ -119,7 +119,12 @@ export class PeliculasService{
     }
     
     createPelicula(PeliculaDto: PeliculaDto) {
-        const newPelicula: Pelicula = new Pelicula(
+      const np:Pelicula={
+        id:uuid(),
+        ...PeliculaDto
+      }
+      
+        /* const newPelicula: Pelicula = new Pelicula(
           uuid(),
           PeliculaDto.titulo,
           PeliculaDto.actores,
@@ -128,16 +133,16 @@ export class PeliculasService{
           PeliculaDto.sinopsis,
           PeliculaDto.duracion,
           PeliculaDto.fecha
-        );
+        ); */
         
         const peliculaRepetida=this.peliculas.find((e)=>
-        e.titulo=== newPelicula.titulo)
+        e.titulo=== np.titulo)
 
         if(peliculaRepetida){
           throw new NotFoundException(`Esa pelicula ya existe`)
         }
     
-        this.peliculas.push(newPelicula);
+        this.peliculas.push(np);
             
         
       }
@@ -150,13 +155,13 @@ export class PeliculasService{
           const peliculaExistente = this.peliculas[index];
     
           //peliculaExistente.setId(nuevaPelicula.id);
-          peliculaExistente.setTitulo(nuevaPelicula.titulo);
-          peliculaExistente.setActores(nuevaPelicula.actores);
-          peliculaExistente.setGeneros(nuevaPelicula.generos);
-          peliculaExistente.setSinopsis(nuevaPelicula.sinopsis);
-          peliculaExistente.setImagen(nuevaPelicula.imagen);
-          peliculaExistente.setDuracion(nuevaPelicula.duracion);
-          peliculaExistente.setFecha(nuevaPelicula.fecha);
+          peliculaExistente.titulo=nuevaPelicula.titulo;
+          peliculaExistente.actores=nuevaPelicula.actores;
+          peliculaExistente.generos=nuevaPelicula.generos;
+          peliculaExistente.sinopsis=nuevaPelicula.sinopsis;
+          peliculaExistente.imagen=nuevaPelicula.imagen;
+          peliculaExistente.duracion=nuevaPelicula.duracion;
+          peliculaExistente.fecha=nuevaPelicula.fecha;
     
           return "ok"
         } else {
